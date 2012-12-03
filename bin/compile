@@ -8,6 +8,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 mkdir -p $CACHE_DIR
+rm -rf $CACHE_DIR/*
 
 if [ ! -e $CACHE_DIR/ghc ]; then
   GHC_URL="http://brianmckenna.org/files/heroku-buildpack-haskell/ghc.tar.gz"
