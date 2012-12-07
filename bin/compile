@@ -226,13 +226,13 @@ echo "-----> Building Node.js runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\"" > $BUILD_DIR/.profile.d/nodejs.sh
 
+echo "-----> Finding coffee binary"
+echo `which coffee` | indent
+
 echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
 # the ld library path hack is horrible, but let's see if it helps
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install -j5 --disable-library-profiling --disable-executable-profiling --disable-shared
-
-echo "-----> Finding coffee binary"
-echo `which coffee` | indent
 
 echo "-----> Caching Cabal packages"
 shopt -s extglob
