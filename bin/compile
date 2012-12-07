@@ -224,9 +224,11 @@ export CPPPATH="$INCLUDE_PATH"
 
 echo "-----> Building Node.js runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\"" > $BUILD_DIR/.profile.d/nodejs.sh
+echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\"" > $BUILD_DIR/.profile.d/nodejs.sh
 
-echo "-----> Finding coffee binary"
+echo "-----> Finding node + coffee binary"
+PATH="$BUILD_DIR/vendor/bin:vendor/bin:$PATH"
+echo `which node` | indent
 echo `which coffee` | indent
 
 echo "-----> Release the hounds! Installing application"
