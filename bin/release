@@ -3,5 +3,5 @@
 cat <<EOF
 ---
 config_vars:
-  PATH: bin:node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+  PATH: vendor/bin:/app/vendor/bin:bin:node_modules/.bin:/usr/local/bin:/usr/bin:/bin
 EOF
