@@ -66,7 +66,7 @@ ghc-pkg recache
 ghc-pkg check
 
 pushd /app
-echo `ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'`
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
 popd
 
 export PATH=$HOME/.cabal/bin:$PATH
@@ -241,6 +241,10 @@ echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
 
 echo "-----> Some debugging"
+
+rm -rf `find /app//.ghc -maxdepth 1 -type d`
+rm -rf /app/.cabal/lib
+
 echo "ghc-pkg:"
 echo `which ghc-pkg`
 echo "cabal:"
