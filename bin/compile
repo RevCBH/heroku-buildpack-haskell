@@ -245,14 +245,14 @@ echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
 
-if [ -e /app/Cabal.lock ]; then
+if [ -e $BUILD_DIR/Cabal.lock ]; then
   set +o errexit
-  DEP_LIST=`cat /app/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
+  DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
   LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
   set -o errexit
 else
   echo "*** No Cabal.lock detected!"
-  ls /app
+  ls $BUILD_DIR
 fi
 
 # cabal configure
