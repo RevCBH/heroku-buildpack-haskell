@@ -245,6 +245,8 @@ echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
 
+cat ~/.cabal/config
+
 if [ -e $BUILD_DIR/Cabal.lock ]; then
   set +o errexit
   # DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
