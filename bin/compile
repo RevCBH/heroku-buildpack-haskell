@@ -19,7 +19,10 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 mkdir -p $CACHE_DIR
 echo "-----> Cache Dir $CACHE_DIR"
 echo "-----> Build Dir $BUILD_DIR"
-# rm -rf $CACHE_DIR/*
+rm -rf $CACHE_DIR/ghc
+rm -rf $CACHE_DIR/dotghc
+rm -rf $CACHE_DIR/cabal
+rm -rf $CACHE_DIR/lib
 
 if [ ! -e $CACHE_DIR/ghc ]; then
   GHC_URL="http://s3.amazonaws.com/haskell-heroku-buildpack/ghc.tar.gz"
@@ -58,6 +61,7 @@ PATH=$CACHE_DIR/ghc/bin:$PATH
 echo "-----> Setting up ghc-pkg"
 ghc-pkg recache
 ghc-pkg describe base > base.conf
+cat base.conf
 
 sed -i "s#ld-options:#ld-options: -L$CACHE_DIR/lib#" base.conf
 perl -i -p -e  "s{/home/vagrant/ghc}{$CACHE_DIR/ghc}g" base.conf
