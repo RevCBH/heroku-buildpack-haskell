@@ -247,8 +247,12 @@ ghc-pkg list
 
 if [ -e $BUILD_DIR/Cabal.lock ]; then
   set +o errexit
-  DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
-  LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
+  # DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
+  # LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
+  for line in $(cat $BUILD_DIR/Cabal.lock) do
+    LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
+    rsync -av --stats $HOME/.ghc $CACHE_DIR/dotghc
+  done
   set -o errexit
 else
   echo "*** No Cabal.lock detected!"
