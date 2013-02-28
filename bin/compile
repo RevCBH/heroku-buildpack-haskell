@@ -250,7 +250,7 @@ if [ -e /app/Cabal.lock ]; then
   DEP_LIST=`cat /app/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
   LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
   set -o errexit
-elif
+else
   echo "*** No Cabal.lock detected!"
 fi
 
