@@ -250,6 +250,8 @@ echo "cabal:"
 echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
+cabal list --installed
+cabal configure
 # the ld library path hack is horrible, but let's see if it helps
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install -j5 --disable-library-profiling --disable-executable-profiling --disable-shared
 
