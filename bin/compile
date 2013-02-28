@@ -19,7 +19,6 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 mkdir -p $CACHE_DIR
 echo "-----> Cache Dir $CACHE_DIR"
 echo "-----> Build Dir $BUILD_DIR"
-
 rm -rf $CACHE_DIR/*
 
 if [ ! -e $CACHE_DIR/ghc ]; then
@@ -252,7 +251,7 @@ echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
 # the ld library path hack is horrible, but let's see if it helps
-LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install -j5 --force-reinstalls --disable-library-profiling --disable-executable-profiling --disable-shared
+LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install -j5 --disable-library-profiling --disable-executable-profiling --disable-shared
 
 echo "-----> Caching Cabal packages"
 shopt -s extglob
