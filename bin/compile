@@ -65,6 +65,10 @@ rm base.conf
 ghc-pkg recache
 ghc-pkg check
 
+pushd /app
+echo `ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'`
+popd
+
 export PATH=$HOME/.cabal/bin:$PATH
 
 echo "-----> Updating Cabal"
@@ -235,6 +239,14 @@ echo `which coffee` | indent
 
 echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
+
+echo "-----> Some debugging"
+echo "ghc-pkg:"
+echo `which ghc-pkg`
+echo "cabal:"
+echo `which cabal`
+echo "ghc-pkg list:"
+ghc-pkg list
 # the ld library path hack is horrible, but let's see if it helps
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install -j5 --force-reinstalls --disable-library-profiling --disable-executable-profiling --disable-shared
 
