@@ -252,6 +252,7 @@ if [ -e /app/Cabal.lock ]; then
   set -o errexit
 else
   echo "*** No Cabal.lock detected!"
+  ls /app
 fi
 
 # cabal configure
