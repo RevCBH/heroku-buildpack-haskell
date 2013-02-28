@@ -255,6 +255,8 @@ echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
 
+set +o errexit
+
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install MissingH-1.2.0.0
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install ReadArgs-1.2.1
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install SHA-1.6.1
@@ -392,6 +394,8 @@ LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install yesod-static-1.1.2.2
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install yesod-test-0.3.3.2
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install zlib-bindings-0.1.1.3
 LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install zlib-conduit-0.5.0.3
+
+set -o errexit
 
 cabal configure
 
