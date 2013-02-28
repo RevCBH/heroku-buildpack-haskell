@@ -56,7 +56,6 @@ PATH=$CACHE_DIR/ghc/bin:$PATH
 echo "-----> Setting up ghc-pkg"
 ghc-pkg recache
 ghc-pkg describe base > base.conf
-cat base.conf
 
 sed -i "s#ld-options:#ld-options: -L$CACHE_DIR/lib#" base.conf
 perl -i -p -e  "s{/home/vagrant/ghc}{$CACHE_DIR/ghc}g" base.conf
@@ -251,6 +250,8 @@ if [ -e /app/Cabal.lock ]; then
   DEP_LIST=`cat /app/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
   LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
   set -o errexit
+elif
+  echo "*** No Cabal.lock detected!"
 fi
 
 # cabal configure
