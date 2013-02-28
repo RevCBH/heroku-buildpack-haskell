@@ -245,22 +245,22 @@ echo `which cabal`
 echo "ghc-pkg list:"
 ghc-pkg list
 
-cat ~/.cabal/config
+# cat ~/.cabal/config
 
-if [ -e $BUILD_DIR/Cabal.lock ]; then
-  set +o errexit
-  # DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
-  # LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
-  for line in $(cat $BUILD_DIR/Cabal.lock); do
-    LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $line
-    # cp -r $HOME/.ghc $CACHE_DIR/dotghc
-    cp -R $HOME/.cabal/lib/$line $CACHE_DIR/cabal/lib/
-  done
-  set -o errexit
-else
-  echo "*** No Cabal.lock detected!"
-  ls $BUILD_DIR
-fi
+# if [ -e $BUILD_DIR/Cabal.lock ]; then
+#   set +o errexit
+#   # DEP_LIST=`cat $BUILD_DIR/Cabal.lock | sed -e :a -e '$!N; s/\n/ /; ta'`
+#   # LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $DEP_LIST
+#   for line in $(cat $BUILD_DIR/Cabal.lock); do
+#     LD_LIBRARY_PATH=$CACHE_DIR/lib cabal install $line
+#     # cp -r $HOME/.ghc $CACHE_DIR/dotghc
+#     cp -R $HOME/.cabal/lib/$line $CACHE_DIR/cabal/lib/
+#   done
+#   set -o errexit
+# else
+#   echo "*** No Cabal.lock detected!"
+#   ls $BUILD_DIR
+# fi
 
 # cabal configure
 
