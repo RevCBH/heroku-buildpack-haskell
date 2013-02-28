@@ -27,10 +27,10 @@ if [ ! -e $CACHE_DIR/ghc ]; then
 fi
 
 # Restore GHC registry if available
-if [ -e $CACHE_DIR/dotghc ]; then
-  rm -rf $HOME/.ghc
-  mv $CACHE_DIR/dotghc $HOME/.ghc
-fi
+# if [ -e $CACHE_DIR/dotghc ]; then
+#   rm -rf $HOME/.ghc
+#   mv $CACHE_DIR/dotghc $HOME/.ghc
+# fi
 
 # Restore Cabal cache or download an empty environemt
 if [ -e $CACHE_DIR/cabal ]; then
@@ -241,9 +241,6 @@ echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
 
 echo "-----> Some debugging"
-
-rm -rf `find /app//.ghc -maxdepth 1 -type d`
-rm -rf /app/.cabal/lib
 
 echo "ghc-pkg:"
 echo `which ghc-pkg`
