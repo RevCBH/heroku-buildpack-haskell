@@ -19,7 +19,7 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 mkdir -p $CACHE_DIR
 echo "-----> Cache Dir $CACHE_DIR"
 echo "-----> Build Dir $BUILD_DIR"
-rm -rf $CACHE_DIR/*
+# rm -rf $CACHE_DIR/*
 
 if [ ! -e $CACHE_DIR/ghc ]; then
   GHC_URL="http://s3.amazonaws.com/haskell-heroku-buildpack/ghc.tar.gz"
